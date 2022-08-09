@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <style>
+        .bgcolor{
+            background-color: black;
+        }
+        .bgcolor a{
+            color: white;
+            text-decoration: none;
+        }
+        .nocolor{
+            background-color: '';
+        }
+        .textCenter{
+            text-align: center;
+        }
+        .mg-auto{
+            margin: auto;
+        }
+    </style>
+</head>
+<body class="textCenter">
+    <h1>All Products Master with CRUD Operation</h1>
+    <hr>
+    <!-- <%=allProducts%> -->
+    <h3><a href="all-products/create">Create</a></h3>
+    <hr>
+
+    <table class="textCenter mg-auto" border="1">
+        <thead>
+            <tr>
+                <th>Products ID</th>
+                <th>Products Name</th>
+                <th>Products Price</th>
+                <th>Products Category</th>
+                <th>Category ID</th>
+                <th>Product Details</th>
+                <th>Update Product</th>
+                <th>Delete Product</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <% for (let i=0; i< allProducts.length ; i++) { %>
+                <tr>
+                    <td><%=allProducts[i].p_id%></td>
+                    <td><%=allProducts[i].name%></td>
+                    <td><%=allProducts[i].price%></td>
+                    <td><%=allProducts[i].category%></td>
+                    <td><%=allProducts[i].cat_id%></td>
+                    <td><a href="all-products/<%=allProducts[i]._id%>">Read</a></td>
+                    <td><a href="all-products/<%=allProducts[i]._id%>/update">Edit</a></td>
+                    <td><a href="all-products/<%=allProducts[i]._id%>/delete">Delete</a></td>
+                </tr>
+            <% } %>
+        
+        </tbody>
+    </table>
+
+    <hr><br><br>
+
+    <div class="pagination">
+        <button>
+                <a href="all-products?page=<%=allProducts.page <= 1 ? 1 : allProducts.page-1 %>&limit=<%=allProducts.dataLimit%>">PRE</a>
+        </button>  
+        
+        <% for (let i=1; i<= allProducts.pageLimit ; i++) { %>
+            <button class="<%=allProducts.page == i ? 'bgcolor' : 'nocolor' %>">
+                <a href="all-products?page=<%=i%>&limit=<%=allProducts.dataLimit%>"><%=i%> </a>
+            </button>  
+        <% } %>
+
+        <button>
+                <a href="all-products?page=<%=allProducts.page >= allProducts.pageLimit ? allProducts.pageLimit : allProducts.page+1 %>&limit=<%=allProducts.dataLimit%>">NEXT</a>
+        </button>  
+       
+    </div>
+
+    <hr><br><br>
+
+    <div>
+        <a href="/products">Go to Categories</a>
+    </div>
+</body>
+</html>
