@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductsApp - Categories Products</title>
+    <style>
+        .bgcolor{
+            background-color: black;
+        }
+        .bgcolor a{
+            color: white;
+            text-decoration: none;
+        }
+        .nocolor{
+            background-color: '';
+        }
+        .textCenter{
+            text-align: center;
+        }
+        .mg-auto{
+            margin: auto;
+        }
+    </style>
+</head>
+<body class="textCenter">
+    <h1>All <%=category_products[0].category%> Products</h1>
+    <hr>
+    <h3><a href="/productsApp/all-products/create">Create</a></h3>
+    <hr>
+
+    <table class="textCenter mg-auto" border="1">
+        <thead>
+            <tr>
+                <th>Products ID</th>
+                <th>Products Name</th>
+                <th>Products Price</th>
+                <th>Products Category</th>
+                <th>Category ID</th>
+                <th>Product Details</th>
+                <th>Update Product</th>
+                <th>Delete Product</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <% for (let i=0; i< category_products.length ; i++) { %>
+                <tr>
+                    <td><%=category_products[i].p_id%></td>
+                    <td><%=category_products[i].name%></td>
+                    <td><%=category_products[i].price%></td>
+                    <td><%=category_products[i].category%></td>
+                    <td><%=category_products[i].cat_id%></td>
+                    <td><a href="/productsApp/all-products/<%=category_products[i]._id%>">Read</a></td>
+                    <td><a href="/productsApp/all-products/<%=category_products[i]._id%>/update">Edit</a></td>
+                    <td><a href="/productsApp/all-products/<%=category_products[i]._id%>/delete">Delete</a></td>
+                </tr>
+            <% } %>
+        
+        </tbody>
+    </table>
+
+    <hr><br><br>
+
+    <div class="pagination">
+        <button>
+                <a href="products?page=<%=category_products.page <= 1 ? 1 : category_products.page-1 %>&limit=<%=category_products.dataLimit%>">PRE</a>
+        </button>  
+        
+        <% for (let i=1; i<= category_products.pageLimit ; i++) { %>
+            <button class="<%=category_products.page == i ? 'bgcolor' : 'nocolor' %>">
+                <a href="products?page=<%=i%>&limit=<%=category_products.dataLimit%>"><%=i%> </a>
+            </button>  
+        <% } %>
+
+        <button>
+                <a href="products?page=<%=category_products.page >= category_products.pageLimit ? category_products.pageLimit : category_products.page+1 %>&limit=<%=category_products.dataLimit%>">NEXT</a>
+        </button>  
+       
+    </div>
+
+    <hr><br><br>
+
+    <div>
+        <a href="/productsApp/categories">Go to Categories</a>
+    </div>
+</body>
+</html>

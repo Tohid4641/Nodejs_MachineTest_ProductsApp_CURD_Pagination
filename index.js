@@ -16,7 +16,7 @@ require('./db/connection.js');
 
 //Require routes
 const product = require('./routes/product.route');
-app.use('/products', product);
+app.use('/productsApp', product);
 
 //Require port
 const PORT = process.env.PORT;

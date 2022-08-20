@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductApp - Categories</title>
+</head>
+<body>
+    <h1>Categories Master</h1>
+
+    <h3><a href="categories/create">Create</a></h3>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Category ID</th>
+                <th>Available</th>
+                <th>Add Products</th>
+                <th>Update Category</th>
+                <th>! Delete Category <br> (Note : All products is also deleted)</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <% for (let i=0; i<[...new Set( allProducts.map((e)=>e.category) )].length ; i++) { %>
+                <tr>
+                    <td><%=[...new Set( allProducts.map((e)=>e.category) )][i]%></td>
+                    <td><%=[...new Set( allProducts.map((e)=>e.cat_id) )][i]%></td>
+                    <td>
+                        <%=allProducts.filter((obj)=>obj.category == `${[...new Set( allProducts.map((e)=>e.category) )][i]}` && obj.p_id ).length %>
+                        <a href="categories/<%= [...new Set( allProducts.map((e)=>e.cat_id) )][i] %>/products?page=1&limit=5">
+                            <%= allProducts.filter((obj)=>obj.category == `${[...new Set( allProducts.map((e)=>e.category) )][i]}` && obj.p_id ).length == 0 ? '' :  'Show' %>
+                        </a>
+                        
+                    </td>
+                    <td><a href="categories/<%= [...new Set( allProducts.map((e)=>e.cat_id) )][i]%>/addProduct">ADD</a></td>
+                    <td><a href="categories/<%= [...new Set( allProducts.map((e)=>e.cat_id) )][i]%>/update_category">Edit</a></td>
+                    <td><a href="categories/<%= [...new Set( allProducts.map((e)=>e.cat_id) )][i]%>/delete_category">Delete</a></td>
+                </tr>
+            <% } %>
+        
+        </tbody>
+    </table>
+    <p>click here to show all <a href="all-products?page=1&limit=10">Products</a> with pagination</p>
+    <a href="/productsApp">Go to Homepage (productsApp)</a>
+    <!-- <%=[...new Set( allProducts.map((e)=>e.category) )]%> -->
+    
+</body>
+</html>

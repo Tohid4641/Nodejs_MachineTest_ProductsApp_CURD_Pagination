@@ -9,7 +9,21 @@ const product_controller = require('../controllers/product.controller');
 app.set('view engine','ejs');
 app.set('views','../views');
 
-router.get('/', product_controller.products);
+router.get('/', product_controller.productsApp);
+
+router.get('/categories', product_controller.categories);
+router.get('/categories/create', product_controller.load_create_category);
+router.post('/categories/create', product_controller.create_category);
+router.get('/categories/:cat_id/products', product_controller.load_category_products);
+
+router.get('/categories/:cat_id/addProduct', product_controller.load_add_product);
+router.post('/categories/:cat_id/addProduct', product_controller.add_product);
+
+router.get('/categories/:cat_id/update_category', product_controller.load_update_category);
+router.post('/categories/:cat_id/update_category', product_controller.update_category);
+
+router.get('/categories/:cat_id/delete_category', product_controller.delete_category);
+
 router.get('/all-products/create', product_controller.load_product_create);
 
 router.post('/all-products/create', product_controller.product_create);

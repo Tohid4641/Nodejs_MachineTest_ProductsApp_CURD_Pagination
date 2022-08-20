@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>ProductsApp - Category Update (U)</title>
+</head>
+<body>
+    <h1>Update Category (U)</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-offset-3">
+                <h1>update your category</h1>
+                <form method="post">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            
+                            <div class="form-group">
+                                <label for="category_name">Category Name: </label>
+                                <input type="text" id="category_name" class="form-control" value="<%=data[0].category%>" name="category" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category_name">Category ID: </label>
+                                <input type="text" id="category_id" class="form-control" value="<%=data[0].cat_id%>" name="cat_id" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
